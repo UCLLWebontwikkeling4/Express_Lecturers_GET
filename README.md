@@ -2,51 +2,46 @@
 
 ## **Prerequisites**
 
-If you're running on Windows, start with installing WSL2 (Ubuntu).
+`WSL`
 
+WSL stands for Windows Subsystem Linux and allows you to install a linux distribution in Windows. It provides performant and seamless integration between windows and linux, without the need for virtualisation. Web development and a lot of its tools work better on a linux based system.
+More info: https://www.digitalocean.com/community/posts/trying-the-new-wsl-2-its-fast-windows-subsystem-for-linux
+
+If you're running on Windows, you can choose to install WSL2 (with ubuntu distro).
 More information on how to install WSL: https://docs.microsoft.com/en-us/windows/wsl/install.
+
+On mac or native linux, you can skip this step.
 
 `Mysql`
 
-Server must be running and configured with settings you can find in `.env`.
-
-You can execute the DDL in **Backend/sql/create_insert.sql** to get some initial data.
-
-`Node.js`
-
-Install **NVM** (Node Version Manager) by executing following commands:
+To install mysql in WSL, you can execute:
 
 ```
-> curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+> sudo apt install mysql-server
 ```
 
-If you're on Mac, use Homebrew instead of curl to install NVM:
+To start mysql:
 
 ```
-> brew update
-> brew install nvm
-> mkdir ~/.nvm
+sudo service mysql start
 ```
 
-Edit the ~/.bash_profile OR ~/.zshrc (depending on which shell you use) and add the following line at the bottom:
+You can execute the DDL in **sql/dd.sql** to get some initial data.
+
+`Dotenv`
+
+Dotenv is a module to externalize configuration, for instance database connection details.
+To get this demo up and running, you'll need to create a **.env** file in you root project directory (on the same level as .gitignore). The contents should look like this:
 
 ```
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG>[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+APP_PORT=3000
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=root
+DB_SCHEME=lecturers
 ```
 
-Reload your shell environment by executing:
-
-```
-> source ~/.bash_profile OR source ~/.zshrc
-```
-
-Now install **Node.js** using **NVM**.
-NVM allows us to install multiple versions of Node.js and easily switch between them.
-
-```
-> nvm install 16
-> nvm use 16
-```
+Replace the connection details with the ones from your server.
 
 `VSCode`
 
@@ -57,19 +52,6 @@ Throughout the lessons we'll use VSCode for the excerises. Make sure you have th
 -   GitLens - Git supercharged
 
 Open the settings of VSCode, search for **Format on save** and make sure it's checked. This assures that every time you save a file, it's being formatted according to the code style rules described in **.prettier.rc**.
-
-`Dotenv`
-
-Dotenv is a module to externalize configuration, for instance database connection details.
-To get this demo up and running, you'll need to create a **.env** file in you root directory. The contents should look like this :
-
-```
-APP_PORT=3000
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=root
-DB_SCHEME=lecturers
-```
 
 Replace the values with your local configuration.
 
@@ -104,7 +86,7 @@ generateResolvConf = false
 Remove symlink **/etc/resolv.conf**
 
 ```
-> sudo rm -rf /etc/resolv.conf**
+> sudo rm -rf /etc/resolv.conf\*\*
 ```
 
 Create a new file **/etc/resolv.conf** and add the line:
@@ -129,8 +111,8 @@ In the Object **terminal.integrated.profiles.windows** add this entry:
 
 ```
 "Ubuntu (WSL)": {
-    "path": "C:\\WINDOWS\\System32\\wsl.exe",
-    "args": ["-d", "Ubuntu"]
+"path": "C:\\WINDOWS\\System32\\wsl.exe",
+"args": ["-d", "Ubuntu"]
 }
 ```
 
