@@ -26,7 +26,7 @@ To start mysql:
 sudo service mysql start
 ```
 
-You can execute the DDL in **sql/dd.sql** to get some initial data.
+You can execute the DDL in **sql/dd.sql** in your favorite mysql tool (Datagrip, Mysql Workbench, SequelPro,...) to create the schema and insert initial data.
 
 `Dotenv`
 

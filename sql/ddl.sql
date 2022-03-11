@@ -1,3 +1,7 @@
+drop schema if exists lecturers;
+create schema lecturers;
+use lecturers;
+
 create table course
 (
     name        varchar(100) not null,
