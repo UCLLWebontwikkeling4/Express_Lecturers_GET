@@ -82,9 +82,9 @@ lecturerRouter.get('/get/:id', (req: Request, res: Response) => {
     lecturerModel.getLecturer(lecturerId, (error: Error, lecturer: Lecturer) => {
         if (error) {
             return res.status(500).json({ status: 'error', errorMessage: error.message });
+        } else {
+            res.status(200).json(lecturer);
         }
-
-        res.status(200).json(lecturer);
     });
 });
 
