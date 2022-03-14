@@ -72,6 +72,16 @@ You can access the API documentation and test it via Swagger running on http://l
 
 ## **Troubleshooting**
 
+### **Debugging in VSCode and WSL**
+
+In VSCode, you can attach a debugger to a Node process and use breakpoints to debug your code. However, since the Node processes are running within WSL and VSCode in Windows (where no node processes are running), you'll need to perform some steps to get this working:
+
+-   In VSCode install the extension **Remote WSL**.
+-   Open VSCode in WSL by clicking on the yellow "><" icon on the bottom of the screen and selecting "Reopen folder in WSL".
+-   VSCode is now able to detect the Node processes. Press **Ctrl-shift-p** and type "Debug: attach to Node process".
+-   Select (the first) process in the list.
+-   You can now put breakpoints and start debugging
+
 ### **Network problems in WSL**
 
 If you're having problems in WSL when executing command that require a network connection, like **curl** or **ping**, try the following:

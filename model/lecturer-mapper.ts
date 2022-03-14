@@ -1,8 +1,8 @@
 import { RowDataPacket } from 'mysql2';
-import { Lecturer } from '../types';
+import { Lecturer, Course } from '../types';
 
 const mapToLecturers = (rows: RowDataPacket[]): Lecturer[] => {
-    const result = [];
+    const result: Lecturer[] = [];
 
     rows.forEach(
         ({
@@ -13,20 +13,17 @@ const mapToLecturers = (rows: RowDataPacket[]): Lecturer[] => {
             course_description,
             course_phase,
         }) => {
-            const course = {
+            const course: Course = {
                 id: course_id,
                 name: course_name,
                 description: course_description,
                 phase: course_phase,
             };
+            const lecturer: Lecturer = { id: lecturer_id, name: lecturer_name, courses: [course] };
 
             const existing = result.find((el) => el.id === lecturer_id);
             if (!existing) {
-                result.push({
-                    id: lecturer_id,
-                    name: lecturer_name,
-                    courses: [course],
-                });
+                result.push(lecturer);
             } else {
                 existing.courses.push(course);
             }
