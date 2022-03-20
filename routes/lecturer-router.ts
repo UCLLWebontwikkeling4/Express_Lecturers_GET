@@ -49,10 +49,10 @@ const lecturerRouter = express.Router();
 lecturerRouter.get('/', (req: Request, res: Response) => {
     lecturerModel.getLecturers((err: Error, lecturers: Lecturer[]) => {
         if (err) {
-            return res.status(500).json({ status: 'error', errorMessage: err.message });
+            res.status(500).json({ status: 'error', errorMessage: err.message });
+        } else {
+            res.status(200).json(lecturers);
         }
-
-        res.status(200).json(lecturers);
     });
 });
 
@@ -81,7 +81,7 @@ lecturerRouter.get('/get/:id', (req: Request, res: Response) => {
     const lecturerId = parseInt(req.params.id);
     lecturerModel.getLecturer(lecturerId, (error: Error, lecturer: Lecturer) => {
         if (error) {
-            return res.status(500).json({ status: 'error', errorMessage: error.message });
+            res.status(500).json({ status: 'error', errorMessage: error.message });
         } else {
             res.status(200).json(lecturer);
         }
